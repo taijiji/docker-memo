@@ -1,4 +1,4 @@
-# Words of kubernetes
+# Keywords of kubernetes
 
 ## Node
 - host server
