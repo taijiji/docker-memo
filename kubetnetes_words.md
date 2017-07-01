@@ -1,12 +1,13 @@
 # Words of kubernetes
-node
+
+## Node
 - host server
 - 1 node = 1 Virtual Machine
 
-cluster
+## Cluster
 - aggregation of nodes
 
-pod
+## Pod
 - aggregation of containers = 1 application
     - reverse proxy 
     - web application
@@ -15,13 +16,14 @@ pod
 - containers of pod are co-sheduled
 - containers of pod are co-located = deploy on 1 node
 
-container
+## Container
 - 1 container = 1 process of linux machine
 
-Selector
+## Selector
 - using "Label" to control target group
     - label example : role = web
-Service
+
+## Service
 - 1 service = multiple pod = multiple application
 - "Service Discovery" using DNS record. 
     - ex: web.default.svc.cluster.local
@@ -34,3 +36,48 @@ Service
     - LoadBalancer  : make load balancer and link to service using NodePort
     - ExternalName  : To use exernal services, make alias for internal cluster using DNS CNAME.
     - Headless      : To use "StatefulSet" function, make DNS SRV record of pod to DNS name resolution.
+
+## Ingress
+- HTTP(Layer 7) load balancer for access to Service
+- function
+    - forward by URL pattern
+    - SSL termination
+
+## Volume
+- external strage area
+    - variable data shuouldn't be used as contianer 
+        - container should be immutable area.
+    - Can mount to contaier
+- for cloud provider's storage
+    - for GCE, for Azure, for AWS
+- for onpremise hardware environment
+    - iscsi
+    - nfs
+    - gitRepo   : Git repository
+    - cinder    : OpenStack block storage
+
+### "emptyDir Vulume"
+- volume on node
+- its be remove when pod be remove
+    - cannot perpetuate data
+
+### "hotPath Volume"
+- volume on node. asign path to node directory.
+- its be not remove when pod be remove
+- its be remove when Node be remove
+    - cannot perpetuate data
+    - Do not use on production environment
+
+### PersistentVolume (PV)
+- volume to perpetuate data safety
+    - use iscsi/nfs
+    - use cloud provider's storage
+- "PersistentVolumeClaim (PVC)"
+    - asign volume size to use PV
+    - 1 VPC on PV
+- Can perpetuate data to "complete PVC" and "mount to container".
+
+### StorageClass
+- dynamic storage volume provisioning on clound provider's environment
+- automatically mapping to PVC for auto-scale Pod
+
