@@ -98,7 +98,51 @@
     1. register as engironment variables on Pod
         - convert variables to use on application program.
 
-
 # Role-Based Access Contorl (RBAC)
 - Access control management
 - after k8s 1.6 (beta)
+
+# ReplicaSet
+- controller to support Horizontal Auto-scale of Pod
+    - ex: replication the application Pod
+- template
+    - Pod definition file.
+- replicas
+    - define Number of Pod.
+    - ReplicaSet keeps the number of Pod by increasing/decreacing Pods.
+- New Pod are asigned new ID (random charactor)
+- Cannot expect which Node be used when new Pod create.
+    - But, it doesn't use less resource Nodes. It's assured.
+
+# Deployment
+- generation management of ReplicaSet template 
+- When new pod created, careate new and old one.then it replaced them
+- Can rolling update . Non-stopped .
+- Can retrieve old status by 1 command
+
+# Horizontal Pod Autoscaling (hpa
+- autoscaling contorol by CPU load average or other metric
+- Control number of pod by changing deployment or ReplicaSet
+
+# DaemonSet
+- set 1pod on every each Nodes
+- Ex:fluent, Prometheus
+
+# StatefulSet
+- it set specific ID to Pod
+- Ex: mysql-0, mysql-1, mysql-2
+- Static link name to Pod.
+- start/stop/restart in order to ID
+
+# Job
+- Assurance system to correctly start and stop
+- Parallelism
+    - Number of Pod running in parallel
+- Completions
+    - Job completion condition number to complete Pod
+
+# Cronjob
+- Job with schedule field to use crontab to run job priodically.
+
+
+ 
