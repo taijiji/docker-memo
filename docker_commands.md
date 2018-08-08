@@ -53,7 +53,18 @@ docker start ceos1
 docker start ceos2
 
 # check network status
- docker inspect ceos1
+
+docker network ls
+
+NETWORK ID          NAME                    DRIVER              SCOPE
+6eca767cbdc2        bridge                  bridge              local
+3aef68408a02        host                    host                local
+bb1f27539fca        net1                    bridge              local
+29333c03cd8c        net2                    bridge              local
+
+
+docker inspect ceos1
+
 [
     {
         (snippet)
@@ -107,3 +118,9 @@ docker start ceos2
     }
 ]
 ```
+
+# remove docker network
+
+after stopping container whitch connected network
+
+docker network rm net1 
